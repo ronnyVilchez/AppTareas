@@ -73,6 +73,8 @@ function fSwitch(local, lista) {
         case 'all':
             allTasks(local, lista)
             break;
+             default: allTasks(local, lista)
+            break;
     }
 }
 function addTask(id, title, array, lista) {

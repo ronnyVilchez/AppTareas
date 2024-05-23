@@ -73,6 +73,9 @@ function fSwitch(local, lista) {
         case 'all':
             allTasks(local, lista)
             break;
+        case 'comp':
+            filtercompleted(local, lista)
+            break;
              default: allTasks(local, lista)
             break;
     }
@@ -117,7 +120,7 @@ lista.addEventListener('change', (e) => {
         box(e.target);
         style(e.target, e.target.nextElementSibling)
         addTF(parseInt(e.target.id), local, e.target.checked)
-
+ fSwitch(local, lista)
     }
 })
 
@@ -213,6 +216,7 @@ function filtercompleted(array, lista) {
 
     add.style.display = 'none'
     button.style.display = 'inline'
+     activo = 'comp'
     lista.innerHTML = ''
 
     let style = 'fa-solid fa-trash'

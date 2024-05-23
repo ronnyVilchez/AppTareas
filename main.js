@@ -1,6 +1,3 @@
-const bt_All = document.querySelector('.bt_All')
-const bt_Active = document.querySelector('.bt_Active')
-const bt_Complet = document.querySelector('.bt_Complet')
 const inputTasks = document.querySelector('.addTasks')
 const bt_Add = document.querySelector('.bt_Add')
 const lista = document.querySelector('.lista')
@@ -13,7 +10,8 @@ const completas = document.getElementById('completas')
 const button = document.querySelector('#button')
 const add = document.querySelector('.add')
 
-add.style.display = 'inline'
+const titu = document.querySelector('titu')
+add.style.display = 'flex'
 button.style.display = 'none'
 
 
@@ -24,38 +22,12 @@ if (localStorage.getItem('array') === null) {
 const tareas = JSON.parse(localStorage.getItem('array'))
 
 
-/* const tareas = [{
-    id: 1,
-    title: 'title1',
-    completed: ''
-}, {
-    id: 2,
-    title: 'title2',
-    completed: ''
-}, {
-    id: 3,
-    title: 'title3',
-    completed: ''
-}, {
-    id: 4,
-    title: 'title4',
-    completed: ''
-}, {
-    id: 5,
-    title: 'title5',
-    completed: ''
-}]
-
- */
-
 
 allTasks(tareas, lista)
 
 form.addEventListener('submit', (e) => {
     let local = JSON.parse(localStorage.getItem('array'))
     e.preventDefault()
-    
-    console.log(activo);
     if (inputTasks.value !== '') {
 
         addTask(local[local.length - 1]?.id + 1 || 1, inputTasks.value, local, lista)
@@ -76,12 +48,13 @@ function fSwitch(local, lista) {
         case 'comp':
             filtercompleted(local, lista)
             break;
-             default: allTasks(local, lista)
+        default: allTasks(local, lista)
             break;
+
     }
 }
 function addTask(id, title, array, lista) {
-    add.style.display = 'inline'
+    add.style.display = 'flex'
     button.style.display = 'none'
     const obj = {
         id: id,
@@ -93,7 +66,7 @@ function addTask(id, title, array, lista) {
     localStorage.setItem('array', JSON.stringify(array))
     let local = JSON.parse(localStorage.getItem('array'))
     fSwitch(local, lista)
-   // actualizar(local, lista)
+    // actualizar(local, lista)
 }
 
 
@@ -120,7 +93,7 @@ lista.addEventListener('change', (e) => {
         box(e.target);
         style(e.target, e.target.nextElementSibling)
         addTF(parseInt(e.target.id), local, e.target.checked)
- fSwitch(local, lista)
+        fSwitch(local, lista)
     }
 })
 
@@ -164,7 +137,7 @@ function allTasks(array, lista) {
     todos.classList.add('bordes')
     activas.classList.remove('bordes')
     completas.classList.remove('bordes')
-    add.style.display = 'inline'
+    add.style.display = 'flex'
     button.style.display = 'none'
     let local = JSON.parse(localStorage.getItem('array'))
     lista.innerHTML = ''
@@ -191,12 +164,6 @@ function deletAll(array, lista) {
     filtercompleted(local, lista)
 }
 
-/* local.forEach((e,i )=> {
-    if ( e.completed === true) {
-        local.splice(i,1) 
-
-    }}) */
-
 function trash(e, lista) {
 
     if (e.target.tagName === 'I') {
@@ -215,8 +182,9 @@ function filtercompleted(array, lista) {
     activas.classList.remove('bordes')
 
     add.style.display = 'none'
-    button.style.display = 'inline'
-     activo = 'comp'
+    button.style.display = 'flex'
+
+    activo = 'comp'
     lista.innerHTML = ''
 
     let style = 'fa-solid fa-trash'
@@ -245,7 +213,7 @@ function delet(delet, lista) {
 
 activas.addEventListener('click', () => {
     activo = 'act'
-    
+
     filterUncompleted(tareas, lista)
 })
 
@@ -254,7 +222,7 @@ function filterUncompleted(array, lista) {
     activas.classList.add('bordes')
     completas.classList.remove('bordes')
     todos.classList.remove('bordes')
-    add.style.display = 'inline'
+    add.style.display = 'flex'
     button.style.display = 'none'
 
     lista.innerHTML = ''
@@ -266,4 +234,3 @@ function filterUncompleted(array, lista) {
         }
     })
 }
-
